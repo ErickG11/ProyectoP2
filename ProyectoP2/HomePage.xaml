@@ -14,8 +14,9 @@
         VerticalOptions="End"
         BackgroundColor="Black"
         Margin="12, 24">
-
-            <Button 
+            <Grid>
+                
+                <Button 
             ImageSource="carrito.jpg"
             BackgroundColor="Transparent"
             CornerRadius="30"
@@ -24,6 +25,21 @@
             VerticalOptions="Center"
             HorizontalOptions="Center"
             Clicked="OnCartButtonClicked"/>
+
+
+            <Button 
+            ImageSource="login.png"
+            BackgroundColor="Transparent"
+            CornerRadius="30"
+            HeightRequest="50"
+            WidthRequest="50"
+            VerticalOptions="Center"
+            Margin="0,0,20,0"
+            HorizontalOptions="End"
+            Clicked="OnLoginButtonClicked"/>
+                
+            </Grid>
+            
 
         </Border>
 

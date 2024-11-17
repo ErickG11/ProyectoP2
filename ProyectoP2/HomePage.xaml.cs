@@ -12,5 +12,10 @@ public partial class HomePage : ContentPage
         await Navigation.PushAsync(new CarritoPage());
     }
 
+    private async void OnLoginButtonClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new LoginPage());
+    }
+
 
 }
