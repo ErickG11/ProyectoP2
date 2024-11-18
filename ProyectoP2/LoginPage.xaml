@@ -3,9 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProyectoP2.LoginPage"
              Title="LoginPage">
-    
-   
-
 
     <Button 
     Text="Cerrar Sesión"

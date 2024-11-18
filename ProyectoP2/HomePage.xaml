@@ -1,49 +1,86 @@
-
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ProyectoP2.HomePage"
-             Title="HomePage">
+             x:Class="ProyectoP2.HomePage">
     
+    <Grid RowDefinitions="Auto,*,Auto" ColumnDefinitions="*">
+        
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Spacing="10" Padding="0" HorizontalOptions="FillAndExpand">
+               
+                <Border StrokeThickness="0"
+                        StrokeShape="RoundRectangle 35"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Start"
+                        Margin="10,0,10,0">
+                    <Image Source="banner.jpeg" 
+                           Aspect="AspectFill" 
+                           VerticalOptions="Start" 
+                           HorizontalOptions="Fill" 
+                           HeightRequest="140" />
+                </Border>
 
-    <!--Barra de navegación-->
-    <Grid>
+                <HorizontalStackLayout HorizontalOptions="End" 
+                                       Margin="10,0" 
+                                       Spacing="10">
+                    <Button Text="+ PRODUCTO"
+                            FontSize="11.5"
+                            TextColor="Black"
+                            BorderColor="Gray"
+                            BorderWidth="1"
+                            BackgroundColor="White"
+                            HeightRequest="30"
+                            CornerRadius="25"
+                            Clicked="OnCartButtonClicked" />
 
+                    <Button Text="+ CATEGORÍA"
+                            FontSize="11.5"
+                            TextColor="Black"
+                            BorderColor="Gray"
+                            BorderWidth="1"
+                            BackgroundColor="White"
+                            HeightRequest="30"
+                            CornerRadius="25"
+                            Clicked="OnCartButtonClicked" />
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Barra de navegación -->
         <Border StrokeShape="RoundRectangle 48"
-        StrokeThickness="0"
-        HeightRequest="60"
-        VerticalOptions="End"
-        BackgroundColor="Black"
-        Margin="12, 24">
-            <Grid>
+                StrokeThickness="0"
+                HeightRequest="60"
+                VerticalOptions="End"
+                BackgroundColor="Black"
+                Margin="12,24"
+                Grid.Row="2">
+            
+            <Grid ColumnDefinitions="*,*,*">
                 
-                <Button 
-            ImageSource="carrito.jpg"
-            BackgroundColor="Transparent"
-            CornerRadius="30"
-            HeightRequest="50"
-            WidthRequest="50"
-            VerticalOptions="Center"
-            HorizontalOptions="Center"
-            Clicked="OnCartButtonClicked"/>
+                <Button ImageSource="home.png" 
+                        BackgroundColor="Transparent" 
+                        CornerRadius="30"
+                        HeightRequest="50" 
+                        WidthRequest="50" 
+                        Grid.Column="0"
+                        Clicked="OnCartButtonClicked" />
 
+                <Button ImageSource="carrito.png" 
+                        BackgroundColor="Transparent" 
+                        CornerRadius="30"
+                        HeightRequest="50" 
+                        WidthRequest="50" 
+                        Grid.Column="1"
+                        Clicked="OnCartButtonClicked" />
 
-            <Button 
-            ImageSource="login.png"
-            BackgroundColor="Transparent"
-            CornerRadius="30"
-            HeightRequest="50"
-            WidthRequest="50"
-            VerticalOptions="Center"
-            Margin="0,0,20,0"
-            HorizontalOptions="End"
-            Clicked="OnLoginButtonClicked"/>
+                <Button ImageSource="login.png" 
+                        BackgroundColor="Transparent" 
+                        CornerRadius="30"
+                        HeightRequest="50" 
+                        WidthRequest="50" 
+                        Grid.Column="2"
+                        Clicked="OnLoginButtonClicked" />
                 
             </Grid>
-            
-
         </Border>
-
     </Grid>
-
 </ContentPage>
-    
