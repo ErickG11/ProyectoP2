@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoP2.Paginas.EditarUsuarioPage"
+             Title="EditarUsuarioPage"
+             NavigationPage.HasNavigationBar="False">
+    
+    <StackLayout VerticalOptions="CenterAndExpand" Margin="16" Padding="16">
+        
+        <Label 
+        Text="Crea una cuenta"
+        VerticalOptions="Center" 
+        HorizontalOptions="Center" />
+
+        <Label Text="Correo" x:Name="lblCorreo" Margin="7,0,0,0" />
+
+        <Entry Placeholder="Ingresa tu correo" x:Name="txtCorreo" Margin="10" Text="{Binding Correo}"/>
+
+        <Label Text="Contraseña" x:Name="lblContraseña" Margin="7,0,0,0" />
+
+        <Entry Placeholder="Ingresa tu contraseña" x:Name="txtContraseña" Margin="10" Text="{Binding Contraseña}"/>
+
+        <Button Text="Crear cuenta" x:Name="btnCrear" Clicked="btnCrear_Clicked" Margin="7" BackgroundColor="Black" TextColor="White"/>
+
+
+    </StackLayout>
+</ContentPage>

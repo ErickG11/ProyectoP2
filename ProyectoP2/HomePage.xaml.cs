@@ -1,3 +1,5 @@
+using ProyectoP2.Paginas;
+
 namespace ProyectoP2;
 
 public partial class HomePage : ContentPage

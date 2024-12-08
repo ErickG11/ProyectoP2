@@ -1,11 +1,17 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System.ComponentModel.DataAnnotations;
 
-public class Usuario : IdentityUser
+
+﻿namespace ProyectoP2.Models
 {
-    [StringLength(50)]
-    public string Nombre { get; set; }
+    public class Usuario
+    {
+        public Guid Id { get; set; }
+        public string Correo { get; set; }
+        public string Contraseña { get; set; }
 
-    [StringLength(50)]
-    public string Apellido { get; set; }
+        public Usuario()
+        {
+            Id = Guid.NewGuid();
+        }
+
+    }
 }
