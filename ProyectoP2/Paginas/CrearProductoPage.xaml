@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProyectoP2.Paginas.CrearProductoPage"
@@ -6,6 +5,7 @@
 
     <StackLayout Padding="20" Spacing="15">
 
+        <!-- Campos del producto -->
         <Label Text="Nombre del Producto" FontSize="16" />
         <Entry x:Name="NombreEntry" Placeholder="Ingrese el nombre del producto" />
 
@@ -18,6 +18,11 @@
         <Label Text="URL de la Imagen" FontSize="16" />
         <Entry x:Name="ImagenUrlEntry" Placeholder="Ingrese la URL de la imagen" Keyboard="Url" />
 
+        <!-- Picker para seleccionar la categoría -->
+        <Label Text="Categoría" FontSize="16" />
+        <Picker x:Name="CategoriaPicker" ItemDisplayBinding="{Binding Nombre}" />
+
+        <!-- Botón para crear el producto -->
         <Button Text="Crear Producto" 
                 FontSize="16" 
                 BackgroundColor="Green" 
@@ -26,3 +31,6 @@
 
     </StackLayout>
 </ContentPage>
+
+
+

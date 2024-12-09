@@ -65,7 +65,21 @@ namespace ProyectoP2
             }
         }
 
-        
+        private async void OnCrearCategoriaClicked(object sender, EventArgs e)
+        {
+            if (App.EsAdministrador)
+            {
+                await Navigation.PushAsync(new CrearCategoriaPage());
+            }
+            else
+            {
+                await DisplayAlert("Acceso Denegado", "Solo los administradores pueden crear productos.", "OK");
+            }
+        }
+
+       
+
+
         private async void OnCartButtonClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new CarritoPage());

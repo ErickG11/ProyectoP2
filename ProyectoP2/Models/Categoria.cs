@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace ProyectoP2.Models
 {
-    internal class Categoria
+    public class Categoria
     {
         [Key]
-        public int IdCategoria { get; set; }
-        public string Descripcion { get; set; }
+        public int Id { get; set; }
+        public string Nombre { get; set; }
     }
 }

@@ -53,7 +53,7 @@
                             BackgroundColor="White"
                             HeightRequest="30"
                             CornerRadius="25" 
-                            Clicked="OnCartButtonClicked" />
+                            Clicked="OnCrearCategoriaClicked" />
                 </StackLayout>
 
                 <CollectionView ItemsSource="{Binding Productos}" Margin="10,10,10,0">
