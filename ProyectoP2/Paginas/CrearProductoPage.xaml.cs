@@ -1,37 +1,44 @@
-using ProyectoP2.Models;
+using ProyectoP2.Models; 
 using SQLite;
-using System.Collections.ObjectModel;
+using System.Collections.ObjectModel; 
 
 namespace ProyectoP2.Paginas
 {
-    public partial class CrearProductoPage : ContentPage
+    public partial class CrearProductoPage : ContentPage 
     {
+        // propiedad para almacenar la lista de categorías Utilizamos ObservableCollection para notificar cambios dinámicos en la lista
         public ObservableCollection<Categoria> Categorias { get; set; } = new ObservableCollection<Categoria>();
 
         public CrearProductoPage()
         {
-            InitializeComponent();
+            InitializeComponent(); 
 
-            // Cargar las categorías desde la base de datos
+            
             CargarCategorias();
 
-            // Suscribirse al mensaje para recargar las categorías cuando se cree una nueva
+            
             MessagingCenter.Subscribe<CrearCategoriaPage>(this, "RecargarCategorias", (sender) =>
             {
-                CargarCategorias();
+                CargarCategorias(); // recargar las categorías cuando se reciba el mensaje
             });
         }
 
+        // cargar las categorías desde la base de datos
         private void CargarCategorias()
         {
             try
             {
+                // conexión con la base de datos SQLite.
                 var database = new SQLiteConnection(Constantes.DatabasePath);
-                database.CreateTable<Categoria>(); // Asegura que la tabla de categorías esté creada
+
+                database.CreateTable<Categoria>();
+
+                // convierte las categorias en una lista
                 var categorias = database.Table<Categoria>().ToList();
 
                 Categorias = new ObservableCollection<Categoria>(categorias);
-                CategoriaPicker.ItemsSource = Categorias; // Actualizar el Picker con las categorías
+
+                CategoriaPicker.ItemsSource = Categorias;
             }
             catch (Exception ex)
             {
@@ -47,13 +54,18 @@ namespace ProyectoP2.Paginas
             string imagenUrl = ImagenUrlEntry.Text;
             Categoria categoriaSeleccionada = CategoriaPicker.SelectedItem as Categoria;
 
-            // Validar que todos los campos sean correctos
-            if (string.IsNullOrWhiteSpace(nombre) || string.IsNullOrWhiteSpace(descripcion) || string.IsNullOrWhiteSpace(precioStr) || string.IsNullOrWhiteSpace(imagenUrl) || categoriaSeleccionada == null)
+            // validar que los campos esten complejos
+            if (string.IsNullOrWhiteSpace(nombre) ||
+                string.IsNullOrWhiteSpace(descripcion) ||
+                string.IsNullOrWhiteSpace(precioStr) ||
+                string.IsNullOrWhiteSpace(imagenUrl) ||
+                categoriaSeleccionada == null)
             {
                 await DisplayAlert("Error", "Todos los campos son obligatorios.", "OK");
                 return;
             }
 
+            // verificar que el precio sea valido
             if (!decimal.TryParse(precioStr, out decimal precio))
             {
                 await DisplayAlert("Error", "El precio debe ser un número válido.", "OK");
@@ -66,14 +78,18 @@ namespace ProyectoP2.Paginas
                 Descripcion = descripcion,
                 Precio = precio,
                 ImagenUrl = imagenUrl,
-                CategoriaId = categoriaSeleccionada.Id // Asociar la categoría seleccionada
+                CategoriaId = categoriaSeleccionada.Id 
             };
 
             try
             {
+                // conexión con la base de datos para ingresar el producto
                 var database = new SQLiteConnection(Constantes.DatabasePath);
-                database.CreateTable<Producto>(); // Asegura que la tabla de productos esté creada
-                database.Insert(producto); // Insertar el producto en la base de datos
+
+                // crea la tabla de productos 
+                database.CreateTable<Producto>();
+
+                database.Insert(producto);
 
                 await DisplayAlert("Éxito", "Producto creado exitosamente.", "OK");
 
@@ -89,9 +105,10 @@ namespace ProyectoP2.Paginas
         {
             base.OnDisappearing();
 
-            // Desuscribirse del mensaje cuando la página desaparece
+            // evitar posibles fugas de memoria.
             MessagingCenter.Unsubscribe<CrearCategoriaPage>(this, "RecargarCategorias");
         }
     }
 }
+
 

@@ -6,7 +6,6 @@
 
     <StackLayout Padding="20" Spacing="15">
 
-        <!-- Campos del producto -->
         <Label Text="Nombre del Producto" FontSize="16" />
         <Entry x:Name="NombreEntry" Placeholder="Ingrese el nombre del producto" />
 
@@ -19,11 +18,9 @@
         <Label Text="URL de la Imagen" FontSize="16" />
         <Entry x:Name="ImagenUrlEntry" Placeholder="Ingrese la URL de la imagen" Keyboard="Url" />
 
-        <!-- Picker para seleccionar la categoría -->
         <Label Text="Categoría" FontSize="16" />
         <Picker x:Name="CategoriaPicker" ItemDisplayBinding="{Binding Nombre}" />
 
-        <!-- Botón para crear el producto -->
         <Button Text="Crear Producto" 
                 FontSize="16" 
                 BackgroundColor="Green" 
