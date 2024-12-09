@@ -7,7 +7,6 @@
         <ScrollView Grid.Row="1">
             <VerticalStackLayout Spacing="10" Padding="0" HorizontalOptions="FillAndExpand">
 
-              
                 <Label Text="JEB"
                        FontSize="36"
                        FontAttributes="Bold"
@@ -23,7 +22,6 @@
                        LineBreakMode="WordWrap"
                        Margin="10,0,10,0"/>
 
-                
                 <Image Source="banner.jpeg"
                        Aspect="AspectFill"
                        VerticalOptions="Start"
@@ -31,7 +29,6 @@
                        HeightRequest="140"
                        Margin="10,0"/>
 
-               
                 <StackLayout HorizontalOptions="End" 
                              Margin="10,0" 
                              Spacing="10"
@@ -59,14 +56,25 @@
                             Clicked="OnCartButtonClicked" />
                 </StackLayout>
 
-               
                 <CollectionView ItemsSource="{Binding Productos}" Margin="10,10,10,0">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Frame BorderColor="Gray" CornerRadius="10" Padding="10" Margin="5" BackgroundColor="#F9F9F9">
                                 <StackLayout>
+                                   
+                                    <Image Source="{Binding ImagenUrl}" 
+                                           Aspect="AspectFill" 
+                                           HeightRequest="150" 
+                                           WidthRequest="150" 
+                                           HorizontalOptions="Center" />
+
+                                   
                                     <Label Text="{Binding Nombre}" FontSize="18" FontAttributes="Bold" TextColor="Black" />
+
+                                   
                                     <Label Text="{Binding Descripcion}" FontSize="14" TextColor="#555555" LineBreakMode="WordWrap" />
+
+                                   
                                     <Label Text="{Binding Precio, StringFormat='Precio: {0:C}'}" FontSize="14" TextColor="Green" />
                                 </StackLayout>
                             </Frame>
@@ -77,7 +85,7 @@
             </VerticalStackLayout>
         </ScrollView>
 
-        <!-- Barra de navegación -->
+     
         <Border StrokeShape="RoundRectangle 48"
                 StrokeThickness="0"
                 HeightRequest="60"

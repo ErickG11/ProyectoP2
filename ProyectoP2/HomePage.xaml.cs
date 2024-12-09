@@ -7,13 +7,13 @@ namespace ProyectoP2
 {
     public partial class HomePage : ContentPage
     {
-        //lista de productos
+       
         public ObservableCollection<Producto> Productos { get; set; } = new ObservableCollection<Producto>();
 
         public HomePage()
         {
             InitializeComponent();
-            BindingContext = this; // Establece el contexto de datos
+            BindingContext = this; 
             CargarProductos();
             ActualizarVisibilidadAdmin();
         }
@@ -26,7 +26,7 @@ namespace ProyectoP2
             ActualizarVisibilidadAdmin(); 
         }
 
-        //  cargar los productos de la base de datos
+        
         private void CargarProductos()
         {
             try
@@ -39,7 +39,7 @@ namespace ProyectoP2
                 Productos.Clear();
                 foreach (var producto in productos)
                 {
-                    Productos.Add(producto); // Agregar cada producto 
+                    Productos.Add(producto); 
                 }
             }
             catch (Exception ex)

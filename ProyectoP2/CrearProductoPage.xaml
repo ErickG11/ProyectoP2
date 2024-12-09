@@ -15,6 +15,9 @@
         <Label Text="Precio" FontSize="16" />
         <Entry x:Name="PrecioEntry" Placeholder="Ingrese el precio" Keyboard="Numeric" />
 
+        <Label Text="URL de la Imagen" FontSize="16" />
+        <Entry x:Name="ImagenUrlEntry" Placeholder="Ingrese la URL de la imagen" Keyboard="Url" />
+
         <Button Text="Crear Producto" 
                 FontSize="16" 
                 BackgroundColor="Green" 
