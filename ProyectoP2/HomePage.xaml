@@ -32,31 +32,37 @@
                        Margin="10,0"/>
 
                 <StackLayout HorizontalOptions="End" 
-                                       Margin="10,0" 
-                                       Spacing="10"
-                                       x:Name="AdminStack"
-                                       IsVisible="{Binding IsAdministrador}">
+             Margin="10,0" 
+             Spacing="10"
+             x:Name="AdminStack"
+             IsVisible="{Binding IsAdministrador}">
 
                     <Button Text="+ PRODUCTO"
-                            FontSize="11.5"
-                            TextColor="Black"
-                            BorderColor="Gray"
-                            BorderWidth="1"
-                            BackgroundColor="White"
-                            HeightRequest="30"
-                            CornerRadius="25" 
-                            Clicked="OnCartButtonClicked" />
+            FontSize="11.5"
+            TextColor="Black"
+            BorderColor="Gray"
+            BorderWidth="1"
+            BackgroundColor="White"
+            HeightRequest="30"
+            CornerRadius="25" 
+            Clicked="OnCrearProductoClicked" />
+                 
 
                     <Button Text="+ CATEGORÍA"
-                            FontSize="11.5"
-                            TextColor="Black"
-                            BorderColor="Gray"
-                            BorderWidth="1"
-                            BackgroundColor="White"
-                            HeightRequest="30"
-                            CornerRadius="25" 
-                            Clicked="OnCartButtonClicked" />
+            FontSize="11.5"
+            TextColor="Black"
+            BorderColor="Gray"
+            BorderWidth="1"
+            BackgroundColor="White"
+            HeightRequest="30"
+            CornerRadius="25" 
+            Clicked="OnCartButtonClicked" />
                 </StackLayout>
+
+
+
+
+
             </VerticalStackLayout>
         </ScrollView>
 

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoP2.Paginas.CrearProductoPage"
+             Title="Crear Producto">
+
+    <StackLayout Padding="20" Spacing="15">
+
+        <Label Text="Nombre del Producto" FontSize="16" />
+        <Entry x:Name="NombreEntry" Placeholder="Ingrese el nombre del producto" />
+
+        <Label Text="Descripción del Producto" FontSize="16" />
+        <Editor x:Name="DescripcionEditor" Placeholder="Ingrese la descripción del producto" />
+
+        <Label Text="Precio" FontSize="16" />
+        <Entry x:Name="PrecioEntry" Placeholder="Ingrese el precio" Keyboard="Numeric" />
+
+        <Button Text="Crear Producto" 
+                FontSize="16" 
+                BackgroundColor="Green" 
+                TextColor="White" 
+                Clicked="OnCrearProductoClicked" />
+
+    </StackLayout>
+</ContentPage>

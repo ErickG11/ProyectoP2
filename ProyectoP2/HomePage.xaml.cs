@@ -4,25 +4,37 @@ namespace ProyectoP2
 {
     public partial class HomePage : ContentPage
     {
-
         public HomePage()
         {
             InitializeComponent();
             ActualizarVisibilidadAdmin();
-
         }
+
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            // Aseguramos que la visibilidad se actualice cuando la página aparezca
+            
             ActualizarVisibilidadAdmin();
         }
 
         private void ActualizarVisibilidadAdmin()
         {
-            // Si es administrador, mostramos el stack de administrador
+            
             AdminStack.IsVisible = App.EsAdministrador;
         }
+
+        private async void OnCrearProductoClicked(object sender, EventArgs e)
+        {
+            if (App.EsAdministrador)  
+            {
+                await Navigation.PushAsync(new CrearProductoPage());
+            }
+            else
+            {
+                await DisplayAlert("Acceso Denegado", "Solo los administradores pueden crear productos.", "OK");
+            }
+        }
+
         private async void OnCartButtonClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new CarritoPage());
@@ -32,7 +44,5 @@ namespace ProyectoP2
         {
             await Navigation.PushAsync(new LoginPage());
         }
-
     }
 }
-
