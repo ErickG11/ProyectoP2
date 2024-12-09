@@ -1,30 +1,42 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProyectoP2.HomePage">
-    
+
     <Grid RowDefinitions="Auto,*,Auto" ColumnDefinitions="*">
-        
+
         <ScrollView Grid.Row="1">
             <VerticalStackLayout Spacing="10" Padding="0" HorizontalOptions="FillAndExpand">
+
                
-                <Border StrokeThickness="0"
-                        StrokeShape="RoundRectangle 35"
-                        HorizontalOptions="Fill"
-                        VerticalOptions="Start"
-                        Margin="10,0,10,0">
-                    <Image Source="banner.jpeg" 
-                           Aspect="AspectFill" 
-                           VerticalOptions="Start" 
-                           HorizontalOptions="Fill" 
-                           HeightRequest="140" />
-                </Border>
+                <Label Text="JEB"
+                       FontSize="36"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       TextColor="Black"
+                       Margin="0,20"/>
+
+                <Label Text="JEB es una compañía de ropa dedicada a aquellos que buscan sentirse bien con su apariencia. Nuestra misión es ofrecer prendas llamativas y elegantes que reflejen la personalidad de quienes las usan. Creemos que cada outfit puede ser una declaración de estilo y queremos que cada cliente se sienta único y seguro de sí mismo."
+                       FontSize="16"
+                       TextColor="#333333"
+                       HorizontalOptions="FillAndExpand"
+                       VerticalOptions="Start"
+                       LineBreakMode="WordWrap"
+                       Margin="10,0,10,0"/>
+
+              
+                <Image Source="banner.jpeg"
+                       Aspect="AspectFill"
+                       VerticalOptions="Start"
+                       HorizontalOptions="Fill"
+                       HeightRequest="140"
+                       Margin="10,0"/>
 
                 <StackLayout HorizontalOptions="End" 
                                        Margin="10,0" 
                                        Spacing="10"
                                        x:Name="AdminStack"
                                        IsVisible="{Binding IsAdministrador}">
-                    
+
                     <Button Text="+ PRODUCTO"
                             FontSize="11.5"
                             TextColor="Black"
@@ -48,7 +60,7 @@
             </VerticalStackLayout>
         </ScrollView>
 
-        <!-- Barra de navegación -->
+      
         <Border StrokeShape="RoundRectangle 48"
                 StrokeThickness="0"
                 HeightRequest="60"
@@ -56,9 +68,9 @@
                 BackgroundColor="Black"
                 Margin="12,24"
                 Grid.Row="2">
-            
+
             <Grid ColumnDefinitions="*,*,*">
-                
+
                 <Button ImageSource="home.png" 
                         BackgroundColor="Transparent" 
                         CornerRadius="30"
@@ -82,8 +94,7 @@
                         WidthRequest="50" 
                         Grid.Column="2"
                         Clicked="OnLoginButtonClicked" />
-                
-                
+
             </Grid>
         </Border>
     </Grid>
