@@ -58,6 +58,7 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Images\carrito.png" />
+	  <None Remove="Resources\Images\descarga.jpeg" />
 	  <None Remove="Resources\Images\home.png" />
 	  <None Remove="Resources\Images\login.png" />
 	</ItemGroup>

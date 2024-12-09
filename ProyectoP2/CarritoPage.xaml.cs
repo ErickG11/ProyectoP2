@@ -1,6 +1,6 @@
 using ProyectoP2.Models;
 
-using ProyectoP2.Models;
+using ProyectoP2.Paginas;
 
 namespace ProyectoP2;
 
@@ -74,7 +74,24 @@ public partial class CarritoPage : ContentPage
         CantidadEntry.Text = string.Empty;
         PrecioUnitarioEntry.Text = string.Empty;
     }
+    private async void OnCartButtonClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new CarritoPage());
+    }
+
+    private async void OnHomeButtonClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new HomePage());
+    }
+
+
+    private async void OnLoginButtonClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new LoginPage());
+    }
 }
+
+
 
 public class CarritoItemViewModel
 {

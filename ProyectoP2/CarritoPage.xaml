@@ -2,62 +2,102 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProyectoP2.CarritoPage"
-             Title="Carrito de Compras">
-    <StackLayout Padding="10" Spacing="10">
-        <Label Text="Carrito de Compras"
-               FontSize="24"
-               HorizontalOptions="Center"
-               FontAttributes="Bold" />
+             Title="Carrito de Compras"
+             NavigationPage.HasNavigationBar="False">
 
-        <!-- Agregar producto -->
-        <Frame BorderColor="Gray" Padding="10" Margin="5">
-            <StackLayout Spacing="10">
-                <Label Text="Agregar Producto" FontSize="18" FontAttributes="Bold" />
-                <Entry x:Name="NombreProductoEntry" Placeholder="Nombre del Producto" />
-                <Entry x:Name="DescripcionProductoEntry" Placeholder="Descripción" />
-                <Entry x:Name="CantidadEntry" Placeholder="Cantidad" Keyboard="Numeric" />
-                <Entry x:Name="PrecioUnitarioEntry" Placeholder="Precio Unitario" Keyboard="Numeric" />
-                <Button Text="Agregar al Carrito"
-                        BackgroundColor="Green"
-                        TextColor="White"
-                        Clicked="OnAgregarProductoClicked" />
-            </StackLayout>
-        </Frame>
+    <Grid RowDefinitions="Auto,*,Auto" ColumnDefinitions="*">
 
-        <!-- Lista de productos en el carrito -->
-        <CollectionView x:Name="CarritoCollectionView" 
-                        ItemsSource="{Binding CarritoItems}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Frame BorderColor="Gray" Padding="10" Margin="5">
-                        <StackLayout>
-                            <Label Text="{Binding NombreProducto}" 
-                                   FontSize="18" 
-                                   FontAttributes="Bold" />
-                            <Label Text="{Binding DescripcionProducto}" 
-                                   FontSize="14" />
-                            <Label Text="{Binding Cantidad}" 
-                                   FontSize="14" 
-                                   TextColor="Gray" />
-                            <Label Text="{Binding PrecioTotal, StringFormat='Total: {0:C}'}" 
-                                   FontSize="16" 
-                                   TextColor="Green" />
-                            <Button Text="Eliminar"
-                                    BackgroundColor="Red"
-                                    TextColor="White"
-                                    Clicked="OnEliminarProductoClicked"
-                                    CommandParameter="{Binding IdCarrito}" />
-                        </StackLayout>
-                    </Frame>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+        <!-- Contenido principal de la página (carrito) -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="10" Spacing="10">
 
-        <!-- Total -->
-        <Label Text="{Binding TotalCarrito, StringFormat='Total: {0:C}'}"
-               FontSize="20"
-               FontAttributes="Bold"
-               HorizontalOptions="End"
-               VerticalOptions="End" />
-    </StackLayout>
+                <Label Text="Carrito de Compras"
+                       FontSize="24"
+                       HorizontalOptions="Center"
+                       FontAttributes="Bold" />
+
+                <!-- Agregar producto -->
+                <Frame BorderColor="Gray" Padding="10" Margin="5">
+                    <StackLayout Spacing="10">
+                        <Label Text="Agregar Producto" FontSize="18" FontAttributes="Bold" />
+                        <Entry x:Name="NombreProductoEntry" Placeholder="Nombre del Producto" />
+                        <Entry x:Name="DescripcionProductoEntry" Placeholder="Descripción" />
+                        <Entry x:Name="CantidadEntry" Placeholder="Cantidad" Keyboard="Numeric" />
+                        <Entry x:Name="PrecioUnitarioEntry" Placeholder="Precio Unitario" Keyboard="Numeric" />
+                        <Button Text="Agregar al Carrito"
+                                BackgroundColor="Green"
+                                TextColor="White"
+                                Clicked="OnAgregarProductoClicked" />
+                    </StackLayout>
+                </Frame>
+
+                <!-- Lista de productos en el carrito -->
+                <CollectionView x:Name="CarritoCollectionView" 
+                                ItemsSource="{Binding CarritoItems}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame BorderColor="Gray" Padding="10" Margin="5">
+                                <StackLayout>
+                                    <Label Text="{Binding NombreProducto}" FontSize="18" FontAttributes="Bold" />
+                                    <Label Text="{Binding DescripcionProducto}" FontSize="14" />
+                                    <Label Text="{Binding Cantidad}" FontSize="14" TextColor="Gray" />
+                                    <Label Text="{Binding PrecioTotal, StringFormat='Total: {0:C}'}" 
+                                           FontSize="16" TextColor="Green" />
+                                    <Button Text="Eliminar"
+                                            BackgroundColor="Red"
+                                            TextColor="White"
+                                            Clicked="OnEliminarProductoClicked"
+                                            CommandParameter="{Binding IdCarrito}" />
+                                </StackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <!-- Total -->
+                <Label Text="{Binding TotalCarrito, StringFormat='Total: {0:C}'}"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       HorizontalOptions="End"
+                       VerticalOptions="End" />
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Barra de navegación (similar a la HomePage) -->
+        <Border StrokeShape="RoundRectangle 48"
+                StrokeThickness="0"
+                HeightRequest="60"
+                VerticalOptions="End"
+                BackgroundColor="Black"
+                Margin="12,24"
+                Grid.Row="2">
+
+            <Grid ColumnDefinitions="*,*,*">
+
+                <Button ImageSource="home.png" 
+                        BackgroundColor="Transparent" 
+                        CornerRadius="30"
+                        HeightRequest="50" 
+                        WidthRequest="50" 
+                        Grid.Column="0"
+                        Clicked="OnHomeButtonClicked" />
+
+                <Button ImageSource="carrito.png" 
+                        BackgroundColor="Transparent" 
+                        CornerRadius="30"
+                        HeightRequest="50" 
+                        WidthRequest="50" 
+                        Grid.Column="1"
+                        Clicked="OnCartButtonClicked" />
+
+                <Button ImageSource="login.png" 
+                        BackgroundColor="Transparent" 
+                        CornerRadius="30"
+                        HeightRequest="50" 
+                        WidthRequest="50" 
+                        Grid.Column="2"
+                        Clicked="OnLoginButtonClicked" />
+            </Grid>
+        </Border>
+    </Grid>
 </ContentPage>
