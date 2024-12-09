@@ -7,6 +7,7 @@
         public Guid Id { get; set; }
         public string Correo { get; set; }
         public string Contraseña { get; set; }
+        public bool EsAdministrador { get; set; }
 
         public Usuario()
         {

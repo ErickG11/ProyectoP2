@@ -1,3 +1,6 @@
+using ProyectoP2.Paginas;
+using ProyectoP2.Models;
+
 namespace ProyectoP2.Paginas
 {
     public partial class LoginPage : ContentPage
@@ -6,14 +9,13 @@ namespace ProyectoP2.Paginas
         {
             InitializeComponent();
 
-            // Si ya hay un usuario se muestra el correo y el botón de cerrar sesión
+            // Si ya hay un usuario se muestra la sesión iniciada
             if (App.Usuario != null)
             {
                 MostrarSesionIniciada();
             }
         }
 
-        // Metodo para que el usuario complete todos los campos
         private async void btnIngresar_Clicked(object sender, EventArgs e)
         {
             string correo = txtCorreo.Text;
@@ -34,52 +36,50 @@ namespace ProyectoP2.Paginas
                 return;
             }
 
-            // Si el usuario existe se guarda y se muestra la sesión
+            // Establecer el usuario global y verificar si es administrador
             App.Usuario = usuario;
-            MostrarSesionIniciada();
-            await Navigation.PushAsync(new HomePage()); 
+            if (correo == "admin@admin.com" && contraseña == "123")
+            {
+                App.EsAdministrador = true;
+            }
+            else
+            {
+                App.EsAdministrador = false;
+            }
+
+            // Redirigir al HomePage
+            await Navigation.PushAsync(new HomePage());
         }
 
-        //ocultar los campos de login y mostrar el correo
         private void MostrarSesionIniciada()
         {
-            // Muestra el StackLayout de sesión y oculta el de login
+            // Ocultar el formulario de login
             LoginStack.IsVisible = false;
+
+            // Mostrar la información de la sesión
             SessionStack.IsVisible = true;
 
-            // Actualiza el correo en la interfaz 
+            // Mostrar el correo del usuario
             lblCorreo.Text = App.Usuario.Correo;
-
-            //Oculta el campo de contraseña y el botón de ingresar
-            txtContraseña.IsVisible = false;
-            btnIngresar.IsVisible = false;
         }
 
-        // Método para cerrar sesión
-        private void btnCerrarSesion_Clicked(object sender, EventArgs e)
+        private async void btnCerrarSesion_Clicked(object sender, EventArgs e)
         {
-            // Elimina al usuario de la sesión
+            // Eliminar la información del usuario actual
             App.Usuario = null;
+            App.EsAdministrador = false;
 
-            // Restaura la interfaz de usuario para permitir nuevo inicio de sesión
+            // Restaurar la interfaz de usuario para permitir un nuevo inicio de sesión
             LoginStack.IsVisible = true;
             SessionStack.IsVisible = false;
 
-            // Vuelve a mostrar el campo de contraseña y el botón de ingresar
-            txtContraseña.IsVisible = true;
-            btnIngresar.IsVisible = true;
-
-            
-            Navigation.PopToRootAsync();
+            await Navigation.PopToRootAsync();
         }
 
-        
-        private void btnRegistrar_Clicked(object sender, EventArgs e)
+        private async void btnRegistrar_Clicked(object sender, EventArgs e)
         {
-           
-            Navigation.PushAsync(new EditarUsuarioPage());
+            // Navegar a la página de registro de usuario
+            await Navigation.PushAsync(new EditarUsuarioPage());
         }
     }
 }
-
-

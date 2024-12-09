@@ -19,9 +19,12 @@
                            HeightRequest="140" />
                 </Border>
 
-                <HorizontalStackLayout HorizontalOptions="End" 
+                <StackLayout HorizontalOptions="End" 
                                        Margin="10,0" 
-                                       Spacing="10">
+                                       Spacing="10"
+                                       x:Name="AdminStack"
+                                       IsVisible="{Binding IsAdministrador}">
+                    
                     <Button Text="+ PRODUCTO"
                             FontSize="11.5"
                             TextColor="Black"
@@ -29,7 +32,7 @@
                             BorderWidth="1"
                             BackgroundColor="White"
                             HeightRequest="30"
-                            CornerRadius="25"
+                            CornerRadius="25" 
                             Clicked="OnCartButtonClicked" />
 
                     <Button Text="+ CATEGORÍA"
@@ -39,9 +42,9 @@
                             BorderWidth="1"
                             BackgroundColor="White"
                             HeightRequest="30"
-                            CornerRadius="25"
+                            CornerRadius="25" 
                             Clicked="OnCartButtonClicked" />
-                </HorizontalStackLayout>
+                </StackLayout>
             </VerticalStackLayout>
         </ScrollView>
 
@@ -79,6 +82,7 @@
                         WidthRequest="50" 
                         Grid.Column="2"
                         Clicked="OnLoginButtonClicked" />
+                
                 
             </Grid>
         </Border>

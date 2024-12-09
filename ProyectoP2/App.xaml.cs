@@ -1,5 +1,4 @@
-﻿using Microsoft.Maui.Controls;
-using ProyectoP2.Data;
+﻿using ProyectoP2.Data;
 using ProyectoP2.Models;
 using ProyectoP2.Paginas;
 
@@ -13,9 +12,9 @@ namespace ProyectoP2
         {
             get
             {
-                if(_datos == null)
+                if (_datos == null)
                 {
-                    _datos = new SQLiteDatacs(Path.Combine(Environment.GetFolderPath( Environment.SpecialFolder.LocalApplicationData), "Datos.db3"));
+                    _datos = new SQLiteDatacs(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Datos.db3"));
                 }
                 return _datos;
             }
@@ -23,11 +22,15 @@ namespace ProyectoP2
 
         public static Usuario Usuario { get; set; }
 
+        // Calcula dinámicamente si el usuario es administrador
+        public static bool EsAdministrador { get; set; }
+
         public App()
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new HomePage());
+            MainPage = new NavigationPage(new LoginPage());
         }
     }
 }
+

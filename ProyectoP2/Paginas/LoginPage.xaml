@@ -35,6 +35,7 @@
             <Button Text="Cerrar Sesión" x:Name="btnCerrarSesion" Clicked="btnCerrarSesion_Clicked" 
                     BackgroundColor="#F44336" TextColor="White" CornerRadius="10" Margin="10" VerticalOptions="End" />
         </StackLayout>
+
     </StackLayout>
 </ContentPage>
 
