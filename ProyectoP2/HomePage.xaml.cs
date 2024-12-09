@@ -18,7 +18,7 @@ namespace ProyectoP2
             ActualizarVisibilidadAdmin();
         }
 
-        /
+        
         protected override void OnAppearing()
         {
             base.OnAppearing();
