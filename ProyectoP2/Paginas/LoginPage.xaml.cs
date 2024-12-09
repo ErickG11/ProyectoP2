@@ -47,29 +47,29 @@ namespace ProyectoP2.Paginas
                 App.EsAdministrador = false;
             }
 
-            // Redirigir al HomePage
+          
             await Navigation.PushAsync(new HomePage());
         }
 
         private void MostrarSesionIniciada()
         {
-            // Ocultar el formulario de login
+           
             LoginStack.IsVisible = false;
 
-            // Mostrar la información de la sesión
+          
             SessionStack.IsVisible = true;
 
-            // Mostrar el correo del usuario
+           
             lblCorreo.Text = App.Usuario.Correo;
         }
 
         private async void btnCerrarSesion_Clicked(object sender, EventArgs e)
         {
-            // Eliminar la información del usuario actual
+            
             App.Usuario = null;
             App.EsAdministrador = false;
 
-            // Restaurar la interfaz de usuario para permitir un nuevo inicio de sesión
+          
             LoginStack.IsVisible = true;
             SessionStack.IsVisible = false;
 
@@ -78,7 +78,7 @@ namespace ProyectoP2.Paginas
 
         private async void btnRegistrar_Clicked(object sender, EventArgs e)
         {
-            // Navegar a la página de registro de usuario
+           
             await Navigation.PushAsync(new EditarUsuarioPage());
         }
     }

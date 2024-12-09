@@ -7,7 +7,7 @@
         <ScrollView Grid.Row="1">
             <VerticalStackLayout Spacing="10" Padding="0" HorizontalOptions="FillAndExpand">
 
-               
+              
                 <Label Text="JEB"
                        FontSize="36"
                        FontAttributes="Bold"
@@ -23,7 +23,7 @@
                        LineBreakMode="WordWrap"
                        Margin="10,0,10,0"/>
 
-              
+                
                 <Image Source="banner.jpeg"
                        Aspect="AspectFill"
                        VerticalOptions="Start"
@@ -31,42 +31,53 @@
                        HeightRequest="140"
                        Margin="10,0"/>
 
+               
                 <StackLayout HorizontalOptions="End" 
-             Margin="10,0" 
-             Spacing="10"
-             x:Name="AdminStack"
-             IsVisible="{Binding IsAdministrador}">
+                             Margin="10,0" 
+                             Spacing="10"
+                             x:Name="AdminStack"
+                             IsVisible="{Binding IsAdministrador}">
 
                     <Button Text="+ PRODUCTO"
-            FontSize="11.5"
-            TextColor="Black"
-            BorderColor="Gray"
-            BorderWidth="1"
-            BackgroundColor="White"
-            HeightRequest="30"
-            CornerRadius="25" 
-            Clicked="OnCrearProductoClicked" />
-                 
+                            FontSize="11.5"
+                            TextColor="Black"
+                            BorderColor="Gray"
+                            BorderWidth="1"
+                            BackgroundColor="White"
+                            HeightRequest="30"
+                            CornerRadius="25" 
+                            Clicked="OnCrearProductoClicked" />
 
                     <Button Text="+ CATEGORÍA"
-            FontSize="11.5"
-            TextColor="Black"
-            BorderColor="Gray"
-            BorderWidth="1"
-            BackgroundColor="White"
-            HeightRequest="30"
-            CornerRadius="25" 
-            Clicked="OnCartButtonClicked" />
+                            FontSize="11.5"
+                            TextColor="Black"
+                            BorderColor="Gray"
+                            BorderWidth="1"
+                            BackgroundColor="White"
+                            HeightRequest="30"
+                            CornerRadius="25" 
+                            Clicked="OnCartButtonClicked" />
                 </StackLayout>
 
-
-
-
+               
+                <CollectionView ItemsSource="{Binding Productos}" Margin="10,10,10,0">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame BorderColor="Gray" CornerRadius="10" Padding="10" Margin="5" BackgroundColor="#F9F9F9">
+                                <StackLayout>
+                                    <Label Text="{Binding Nombre}" FontSize="18" FontAttributes="Bold" TextColor="Black" />
+                                    <Label Text="{Binding Descripcion}" FontSize="14" TextColor="#555555" LineBreakMode="WordWrap" />
+                                    <Label Text="{Binding Precio, StringFormat='Precio: {0:C}'}" FontSize="14" TextColor="Green" />
+                                </StackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
 
             </VerticalStackLayout>
         </ScrollView>
 
-      
+        <!-- Barra de navegación -->
         <Border StrokeShape="RoundRectangle 48"
                 StrokeThickness="0"
                 HeightRequest="60"
@@ -100,7 +111,6 @@
                         WidthRequest="50" 
                         Grid.Column="2"
                         Clicked="OnLoginButtonClicked" />
-
             </Grid>
         </Border>
     </Grid>

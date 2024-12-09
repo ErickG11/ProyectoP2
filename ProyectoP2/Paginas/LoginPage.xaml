@@ -7,7 +7,6 @@
 
     <StackLayout VerticalOptions="CenterAndExpand" Margin="16" Padding="16" Spacing="10">
 
-        <!-- Contenido visible antes de iniciar sesión -->
         <StackLayout x:Name="LoginStack" IsVisible="True">
             <Label Text="Iniciar Sesion"
             VerticalOptions="Center" 
@@ -28,7 +27,6 @@
                     BackgroundColor="Black" TextColor="White" CornerRadius="10" Margin="7"/>
         </StackLayout>
 
-        <!-- Contenido visible después de iniciar sesión -->
         <StackLayout x:Name="SessionStack" IsVisible="False">
             <Label Text="¡Bienvenido!" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Start"/>
             <Label Text="{Binding Correo}" x:Name="lblCorreo" FontSize="18" HorizontalOptions="Center" />
