@@ -1,0 +1,33 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoP2.Paginas.DescuentosPage">
+
+    <StackLayout Padding="20">
+        <Label Text="Gestionar Descuentos"
+               FontSize="24"
+               HorizontalOptions="Center"
+               Margin="0,20" />
+
+        <Button Text="Agregar Descuento"
+                Clicked="OnAgregarDescuentoClicked"
+                HorizontalOptions="FillAndExpand" />
+
+        <CollectionView ItemsSource="{Binding Descuentos}" Margin="10,10,10,0">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BorderColor="Gray" CornerRadius="10" Padding="10" Margin="5" BackgroundColor="#F9F9F9">
+                        <StackLayout>
+                            <Label Text="{Binding Codigo}" FontSize="18" FontAttributes="Bold" TextColor="Black" />
+                            <Label Text="{Binding Porcentaje, StringFormat='Descuento: {0}%'}" FontSize="14" TextColor="Green" />
+                            <Label Text="{Binding FechaVencimiento, StringFormat='Válido hasta: {0:d}'}" FontSize="14" TextColor="#555555" />
+                            <Button Text="Eliminar"
+                                    CommandParameter="{Binding IdDescuento}"
+                                    Clicked="OnEliminarDescuentoClicked"
+                                    TextColor="Red" />
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>

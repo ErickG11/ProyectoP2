@@ -46,6 +46,16 @@
                             HeightRequest="30"
                             CornerRadius="25" 
                             Clicked="OnCrearCategoriaClicked" />
+
+                    <Button Text="+ DESCUENTO"
+                            FontSize="11.5"
+                            TextColor="Black"
+                            BorderColor="Gray"
+                            BorderWidth="1"
+                            BackgroundColor="White"
+                            HeightRequest="30"
+                            CornerRadius="25"
+                            Clicked="OnCrearDescuentoClicked" />
                 </StackLayout>
 
                 <CollectionView ItemsSource="{Binding Productos}" Margin="10,10,10,0">
@@ -53,21 +63,23 @@
                         <DataTemplate>
                             <Frame BorderColor="Gray" CornerRadius="10" Padding="10" Margin="5" BackgroundColor="#F9F9F9">
                                 <StackLayout>
-                                   
                                     <Image Source="{Binding ImagenUrl}" 
                                            Aspect="AspectFill" 
                                            HeightRequest="150" 
                                            WidthRequest="150" 
                                            HorizontalOptions="Center" />
-
-                                   
                                     <Label Text="{Binding Nombre}" FontSize="18" FontAttributes="Bold" TextColor="Black" />
-
-                                   
                                     <Label Text="{Binding Descripcion}" FontSize="14" TextColor="#555555" LineBreakMode="WordWrap" />
-
-                                   
                                     <Label Text="{Binding Precio, StringFormat='Precio: {0:C}'}" FontSize="14" TextColor="Green" />
+                                    <Button Text="Agregar al Carrito"
+                                            FontSize="12"
+                                            TextColor="Black"
+                                            BackgroundColor="White"
+                                            BorderColor="Gray"
+                                            BorderWidth="1"
+                                            HeightRequest="30"
+                                            CornerRadius="25"
+                                            Clicked="OnAgregarAlCarritoClicked" />
                                 </StackLayout>
                             </Frame>
                         </DataTemplate>
@@ -77,7 +89,6 @@
             </VerticalStackLayout>
         </ScrollView>
 
-     
         <Border StrokeShape="RoundRectangle 48"
                 StrokeThickness="0"
                 HeightRequest="60"
@@ -85,9 +96,7 @@
                 BackgroundColor="Black"
                 Margin="12,24"
                 Grid.Row="2">
-
             <Grid ColumnDefinitions="*,*,*">
-
                 <Button ImageSource="home.png" 
                         BackgroundColor="Transparent" 
                         CornerRadius="30"
@@ -95,7 +104,6 @@
                         WidthRequest="50" 
                         Grid.Column="0"
                         Clicked="OnCartButtonClicked" />
-
                 <Button ImageSource="carrito.png" 
                         BackgroundColor="Transparent" 
                         CornerRadius="30"
@@ -103,7 +111,6 @@
                         WidthRequest="50" 
                         Grid.Column="1"
                         Clicked="OnCartButtonClicked" />
-
                 <Button ImageSource="login.png" 
                         BackgroundColor="Transparent" 
                         CornerRadius="30"
