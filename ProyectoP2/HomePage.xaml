@@ -145,7 +145,7 @@
                         HeightRequest="50" 
                         WidthRequest="50" 
                         Grid.Column="0"
-                        Clicked="OnCartButtonClicked" />
+                        Clicked="OnHomeButtonClicked" />
                 <Button ImageSource="carrito.png" 
                         BackgroundColor="Transparent" 
                         CornerRadius="30"
