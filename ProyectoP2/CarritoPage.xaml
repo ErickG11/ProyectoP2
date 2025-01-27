@@ -2,32 +2,54 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="ProyectoP2.Paginas.CarritoPage"
-             Title="Carrito de Compras">
+             Title="Carrito de Compras"
+             BackgroundColor="#f1f1f1">
 
-    <StackLayout Padding="20">
-        <Label Text="Productos en el carrito" FontSize="20" HorizontalOptions="Center" />
+   
+    <ScrollView Padding="20">
+        <StackLayout Spacing="20">
 
-        <!-- Lista de productos -->
-        <CollectionView ItemsSource="{Binding ProductosEnCarrito}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout Orientation="Horizontal" Padding="5">
-                        <Image Source="{Binding ImagenUrl}" WidthRequest="50" HeightRequest="50" Aspect="AspectFill" />
-                        <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand">
-                            <Label Text="{Binding Nombre}" HorizontalOptions="StartAndExpand"/>
-                            <Label Text="{Binding Precio, StringFormat='{0:C}'}" HorizontalOptions="StartAndExpand"/>
-                        </StackLayout>
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+            
+            <Label Text="Carrito de Compras"
+                   FontSize="24" 
+                   FontAttributes="Bold" 
+                   HorizontalOptions="Center" 
+                   TextColor="#34495E"/>
 
-        <Label Text="Total: " FontSize="18" />
-        <Label Text="{Binding Total, StringFormat='{0:C}'}" FontSize="22" HorizontalOptions="Center" />
+            
+            <CollectionView ItemsSource="{Binding ProductosEnCarrito}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
 
-        <Button Text="Finalizar Compra" 
-                BackgroundColor="Green" 
-                TextColor="White"
-                Command="{Binding OnFinalizarCompraClicked}" />
-    </StackLayout>
+                        <Frame Padding="10" BackgroundColor="White" CornerRadius="10" Margin="0,5" HasShadow="True">
+                            <StackLayout Orientation="Horizontal" Spacing="15">
+                              
+                                <Image Source="{Binding ImagenUrl}" WidthRequest="60" HeightRequest="60" Aspect="AspectFill" />
+
+                              
+                                <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
+                                    <Label Text="{Binding Nombre}" FontSize="16" FontAttributes="Bold" TextColor="#2C3E50"/>
+                                    <Label Text="{Binding Precio, StringFormat='{0:C}'}" FontSize="14" TextColor="#27AE60"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <StackLayout Orientation="Horizontal" Padding="10" Spacing="10">
+                <Label Text="Total: " FontSize="18" FontAttributes="Bold" VerticalOptions="Center" TextColor="#34495E"/>
+                <Label Text="{Binding Total, StringFormat='{0:C}'}" FontSize="20" FontAttributes="Bold" HorizontalOptions="EndAndExpand" VerticalOptions="Center" TextColor="#27AE60"/>
+            </StackLayout>
+
+            <Button Text="Finalizar Compra" 
+                    BackgroundColor="#27AE60" 
+                    TextColor="White" 
+                    FontSize="18" 
+                    Padding="15" 
+                    CornerRadius="30" 
+                    VerticalOptions="Center" 
+                    Command="{Binding OnFinalizarCompraClicked}" />
+        </StackLayout>
+    </ScrollView>
 </ContentPage>
