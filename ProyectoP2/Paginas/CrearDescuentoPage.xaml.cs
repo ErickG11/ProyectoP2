@@ -11,7 +11,7 @@ namespace ProyectoP2.Paginas
             InitializeComponent();
         }
 
-        // Lógica para crear el descuento
+        // crear el descuento
         private void OnCrearDescuentoClicked(object sender, EventArgs e)
         {
             string codigoDescuento = CodigoDescuentoEntry.Text;
@@ -23,11 +23,11 @@ namespace ProyectoP2.Paginas
                 return;
             }
 
-            // Llamar al servicio para agregar el descuento
+            // llamar al servicio para agregar el descuento
             DescuentoService.AgregarDescuento(codigoDescuento, porcentajeDescuento);
 
             DisplayAlert("Descuento Creado", "El descuento ha sido creado con éxito.", "OK");
-            Navigation.PopAsync(); // Regresar a la página anterior
+            Navigation.PopAsync();
         }
     }
 }

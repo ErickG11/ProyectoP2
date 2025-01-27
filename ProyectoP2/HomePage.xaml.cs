@@ -103,8 +103,6 @@ namespace ProyectoP2
         {
             await Navigation.PushAsync(new CarritoPage());
         }
-
-
         private async void OnHomeButtonClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new HomePage());

@@ -15,7 +15,6 @@ namespace ProyectoP2.Paginas
         {
             get
             {
-                // Sumar los precios de todos los productos en el carrito
                 return ProductosEnCarrito.Sum(p => (double)p.Precio);
             }
         }
@@ -31,7 +30,7 @@ namespace ProyectoP2.Paginas
             }
         }
 
-        // La propiedad TotalConDescuento aplica el descuento al total
+        // aplica el descuento al total
         public double TotalConDescuento
         {
             get

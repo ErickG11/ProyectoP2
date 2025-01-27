@@ -51,6 +51,39 @@
                     CornerRadius="30" 
                     VerticalOptions="Center" 
                     Command="{Binding OnFinalizarCompraClicked}" />
+
+            <Border StrokeShape="RoundRectangle 48"
+        StrokeThickness="0"
+        HeightRequest="60"
+        VerticalOptions="End"
+        BackgroundColor="#0288D1"
+        Margin="12,24"
+        Grid.Row="2">
+                <Grid ColumnDefinitions="*,*,*">
+                    <Button ImageSource="home.png" 
+                BackgroundColor="Transparent" 
+                CornerRadius="30"
+                HeightRequest="50" 
+                WidthRequest="50" 
+                Grid.Column="0"
+                Clicked="OnHomeButtonClicked" />
+                    <Button ImageSource="carrito.png" 
+                BackgroundColor="Transparent" 
+                CornerRadius="30"
+                HeightRequest="50" 
+                WidthRequest="50" 
+                Grid.Column="1"
+                Clicked="OnCartButtonClicked" />
+                    <Button ImageSource="login.png" 
+                BackgroundColor="Transparent" 
+                CornerRadius="30"
+                HeightRequest="50" 
+                WidthRequest="50" 
+                Grid.Column="2"
+                Clicked="OnLoginButtonClicked" />
+                </Grid>
+            </Border>
+
         </StackLayout>
     </ScrollView>
 </ContentPage>

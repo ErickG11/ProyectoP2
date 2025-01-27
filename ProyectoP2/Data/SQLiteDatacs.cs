@@ -9,10 +9,8 @@ namespace ProyectoP2.Data
         //manejar la conexión a la base de datos
         readonly SQLiteAsyncConnection _connectionBD;
 
-        // tabla de usuarios para realizar operaciones CRUD
         public UsuarioData UsuarioDataTable { get; set; }
 
-        // constructor 
         public SQLiteDatacs(string path)
         {
             _connectionBD = new SQLiteAsyncConnection(path);

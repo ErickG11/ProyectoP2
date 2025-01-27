@@ -25,8 +25,6 @@ namespace ProyectoP2.Paginas
 
         private async void OnAgregarDescuentoClicked(object sender, EventArgs e)
         {
-            // Lógica para agregar un nuevo descuento
-            // Muestra una página o un popup para ingresar los datos
             await Navigation.PushAsync(new CrearDescuentoPage());
         }
 

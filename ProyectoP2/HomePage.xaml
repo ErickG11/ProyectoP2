@@ -54,7 +54,7 @@
                             Clicked="OnCrearDescuentoClicked" />
                 </StackLayout>
 
-               
+
                 <CollectionView ItemsSource="{Binding Productos}" Margin="0,10,0,0">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
@@ -106,27 +106,6 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
-
-                <StackLayout Orientation="Horizontal" Padding="10,0">
-                    <Entry x:Name="CodigoDescuentoEntry" 
-                           Placeholder="Ingresa código de descuento" 
-                           FontSize="16" 
-                           HorizontalOptions="FillAndExpand" />
-                    <Button Text="Aplicar Descuento" 
-                            BackgroundColor="#4DD0E1" 
-                            TextColor="White" 
-                            Command="{Binding AplicarDescuentoCommand}" 
-                            Padding="10" />
-                </StackLayout>
-
-                <StackLayout Orientation="Horizontal" Padding="10,0">
-                    <Label Text="Total: " FontSize="18" FontAttributes="Bold" VerticalOptions="Center" TextColor="#34495E"/>
-                    <Label Text="{Binding TotalConDescuento, StringFormat='{0:C}'}" 
-                           FontSize="20" FontAttributes="Bold" 
-                           HorizontalOptions="EndAndExpand" 
-                           VerticalOptions="Center" 
-                           TextColor="#27AE60"/>
-                </StackLayout>
 
             </VerticalStackLayout>
         </ScrollView>

@@ -6,7 +6,7 @@ namespace ProyectoP2.Paginas
 {
     public partial class CrearProductoPage : ContentPage 
     {
-        // propiedad para almacenar la lista de categorías Utilizamos ObservableCollection para notificar cambios dinámicos en la lista
+        // almacenar la lista de categorías Utilizamos ObservableCollection para notificar cambios dinámicos en la lista
         public ObservableCollection<Categoria> Categorias { get; set; } = new ObservableCollection<Categoria>();
 
         public CrearProductoPage()
@@ -19,21 +19,19 @@ namespace ProyectoP2.Paginas
             
             MessagingCenter.Subscribe<CrearCategoriaPage>(this, "RecargarCategorias", (sender) =>
             {
-                CargarCategorias(); // recargar las categorías cuando se reciba el mensaje
+                CargarCategorias(); 
             });
         }
 
-        // cargar las categorías desde la base de datos
+        // categorías cargadas desde la base de datos
         private void CargarCategorias()
         {
             try
             {
-                // conexión con la base de datos SQLite.
                 var database = new SQLiteConnection(Constantes.DatabasePath);
 
                 database.CreateTable<Categoria>();
 
-                // convierte las categorias en una lista
                 var categorias = database.Table<Categoria>().ToList();
 
                 Categorias = new ObservableCollection<Categoria>(categorias);
