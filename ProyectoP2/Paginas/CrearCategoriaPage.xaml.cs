@@ -15,7 +15,7 @@ namespace ProyectoP2.Paginas
         {
             string categoriaNombre = CategoriaEntry.Text; 
 
-            // Valida que el campo no esté vacío -----------------------------------------------------------------
+           
             if (string.IsNullOrWhiteSpace(categoriaNombre))
             {
                 
@@ -23,20 +23,20 @@ namespace ProyectoP2.Paginas
                 return;
             }
 
-            // Crea una nueva instancia del modelo `Categoria` con el nombre dado 
+           
             var nuevaCategoria = new Categoria { Nombre = categoriaNombre };
 
             try
             {
-                // Establece la conexión con la base de datos
+                
                 var database = new SQLiteConnection(Constantes.DatabasePath);
 
-                // Existencia de la tabla de categorías en la base de datos
+              
                 database.CreateTable<Categoria>();
 
                 database.Insert(nuevaCategoria);
 
-                // Envía un mensaje para notificar a otras páginas que deben recargar las categorías disponibles 
+            
                 MessagingCenter.Send(this, "RecargarCategorias");
 
                 await DisplayAlert("Éxito", "Categoría creada exitosamente.", "OK");

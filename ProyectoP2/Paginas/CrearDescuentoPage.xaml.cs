@@ -1,6 +1,6 @@
-using ProyectoP2.Models;
-using SQLite;
+using ProyectoP2.Services;
 using System;
+using Microsoft.Maui.Controls;
 
 namespace ProyectoP2.Paginas
 {
@@ -11,28 +11,23 @@ namespace ProyectoP2.Paginas
             InitializeComponent();
         }
 
-        private async void OnGuardarDescuentoClicked(object sender, EventArgs e)
+        // Lógica para crear el descuento
+        private void OnCrearDescuentoClicked(object sender, EventArgs e)
         {
-            try
-            {
-                var descuento = new Descuento
-                {
-                    Codigo = CodigoEntry.Text,
-                    Porcentaje = Convert.ToInt32(PorcentajeEntry.Text),
-                    FechaVencimiento = FechaVencimientoPicker.Date
-                };
+            string codigoDescuento = CodigoDescuentoEntry.Text;
+            double porcentajeDescuento = 0;
 
-                var database = new SQLiteConnection(Constantes.DatabasePath);
-                database.CreateTable<Descuento>();
-                database.Insert(descuento);
-
-                await DisplayAlert("Éxito", "Descuento creado correctamente", "OK");
-                await Navigation.PopAsync();
-            }
-            catch (Exception ex)
+            if (string.IsNullOrEmpty(codigoDescuento) || !double.TryParse(DescuentoEntry.Text, out porcentajeDescuento))
             {
-                await DisplayAlert("Error", $"No se pudo guardar el descuento: {ex.Message}", "OK");
+                DisplayAlert("Error", "Por favor ingrese un código válido y un porcentaje.", "OK");
+                return;
             }
+
+            // Llamar al servicio para agregar el descuento
+            DescuentoService.AgregarDescuento(codigoDescuento, porcentajeDescuento);
+
+            DisplayAlert("Descuento Creado", "El descuento ha sido creado con éxito.", "OK");
+            Navigation.PopAsync(); // Regresar a la página anterior
         }
     }
 }

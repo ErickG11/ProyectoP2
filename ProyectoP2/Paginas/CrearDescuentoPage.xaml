@@ -1,31 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ProyectoP2.Paginas.CrearDescuentoPage">
+             x:Class="ProyectoP2.Paginas.CrearDescuentoPage"
+             Title="Crear Descuento"
+             NavigationPage.HasNavigationBar="False">
 
-    <StackLayout Padding="20">
-        <Label Text="Crear Descuento"
-               FontSize="24"
-               HorizontalOptions="Center"
-               Margin="0,20" />
+    <StackLayout Padding="20" Spacing="15">
+        <Label Text="Código de Descuento" FontSize="16" />
+        <Entry x:Name="CodigoDescuentoEntry" Placeholder="Ingrese un código de descuento" />
 
-        <Entry x:Name="CodigoEntry" 
-               Placeholder="Código del descuento" 
-               FontSize="18" 
-               Margin="0,10" />
+        <Label Text="Porcentaje de Descuento" FontSize="16" />
+        <Entry x:Name="DescuentoEntry" Keyboard="Numeric" Placeholder="Ingrese el porcentaje" />
 
-        <Entry x:Name="PorcentajeEntry" 
-               Placeholder="Porcentaje de descuento" 
-               Keyboard="Numeric" 
-               FontSize="18" 
-               Margin="0,10" />
-
-        <DatePicker x:Name="FechaVencimientoPicker"
-                    Date="{Binding FechaVencimiento}"
-                    FontSize="18"
-                    Margin="0,10" />
-
-        <Button Text="Guardar Descuento"
-                Clicked="OnGuardarDescuentoClicked"
-                HorizontalOptions="FillAndExpand" />
+        <Button Text="Crear Descuento" 
+                FontSize="16" 
+                BackgroundColor="Black" 
+                TextColor="White" 
+                Clicked="OnCrearDescuentoClicked" />
     </StackLayout>
+
 </ContentPage>

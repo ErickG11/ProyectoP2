@@ -5,28 +5,21 @@
              Title="Carrito de Compras"
              BackgroundColor="#f1f1f1">
 
-   
     <ScrollView Padding="20">
         <StackLayout Spacing="20">
 
-            
             <Label Text="Carrito de Compras"
                    FontSize="24" 
                    FontAttributes="Bold" 
                    HorizontalOptions="Center" 
                    TextColor="#34495E"/>
 
-            
             <CollectionView ItemsSource="{Binding ProductosEnCarrito}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-
                         <Frame Padding="10" BackgroundColor="White" CornerRadius="10" Margin="0,5" HasShadow="True">
                             <StackLayout Orientation="Horizontal" Spacing="15">
-                              
                                 <Image Source="{Binding ImagenUrl}" WidthRequest="60" HeightRequest="60" Aspect="AspectFill" />
-
-                              
                                 <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
                                     <Label Text="{Binding Nombre}" FontSize="16" FontAttributes="Bold" TextColor="#2C3E50"/>
                                     <Label Text="{Binding Precio, StringFormat='{0:C}'}" FontSize="14" TextColor="#27AE60"/>
@@ -37,11 +30,19 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
+          
             <StackLayout Orientation="Horizontal" Padding="10" Spacing="10">
                 <Label Text="Total: " FontSize="18" FontAttributes="Bold" VerticalOptions="Center" TextColor="#34495E"/>
-                <Label Text="{Binding Total, StringFormat='{0:C}'}" FontSize="20" FontAttributes="Bold" HorizontalOptions="EndAndExpand" VerticalOptions="Center" TextColor="#27AE60"/>
+                <Label Text="{Binding TotalConDescuento, StringFormat='{0:C}'}" FontSize="20" FontAttributes="Bold" HorizontalOptions="EndAndExpand" VerticalOptions="Center" TextColor="#27AE60"/>
             </StackLayout>
 
+            
+            <StackLayout Orientation="Horizontal" Padding="10" Spacing="10">
+                <Entry x:Name="CodigoDescuentoEntry" Placeholder="Ingresa codigo de descuento" FontSize="16" Text="{Binding CodigoDescuento}"/>
+                <Button Text="Aplicar descuento" BackgroundColor="#3498DB" TextColor="White" Command="{Binding AplicarDescuentoCommand}" />
+            </StackLayout>
+
+          
             <Button Text="Finalizar Compra" 
                     BackgroundColor="#27AE60" 
                     TextColor="White" 

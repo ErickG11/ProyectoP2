@@ -4,7 +4,6 @@
 
     <Grid RowDefinitions="Auto,*,Auto" ColumnDefinitions="*">
 
-        <!-- Título y Logo con fondo blanco -->
         <StackLayout Grid.Row="0" Padding="20,10" BackgroundColor="White">
             <Label Text="Bienvenido a JEB" 
                    FontSize="36" 
@@ -17,7 +16,6 @@
                    HorizontalOptions="Center" />
         </StackLayout>
 
-        <!-- Productos y Botones -->
         <ScrollView Grid.Row="1">
             <VerticalStackLayout Spacing="20" Padding="15,10" BackgroundColor="#E0F7FA">
                 <StackLayout HorizontalOptions="End" 
@@ -44,9 +42,19 @@
                             WidthRequest="200"
                             HorizontalOptions="End"
                             Clicked="OnCrearCategoriaClicked" />
+
+                    <Button Text="+ DESCUENTO"
+                            FontSize="18"
+                            TextColor="Black"
+                            BackgroundColor="#4DD0E1"
+                            CornerRadius="30"
+                            Padding="12"
+                            WidthRequest="200"
+                            HorizontalOptions="End"
+                            Clicked="OnCrearDescuentoClicked" />
                 </StackLayout>
 
-                <!-- Lista de Productos -->
+               
                 <CollectionView ItemsSource="{Binding Productos}" Margin="0,10,0,0">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
@@ -57,15 +65,12 @@
                                    BackgroundColor="White" 
                                    HasShadow="True">
                                 <Grid RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="Auto,*" Margin="0">
-                                    <!-- Imagen -->
                                     <Image Source="{Binding ImagenUrl}" 
                                            Aspect="AspectFill" 
                                            HeightRequest="120" 
                                            WidthRequest="120" 
                                            VerticalOptions="Center" 
                                            Grid.RowSpan="4" />
-
-                                    <!-- Información -->
                                     <Label Text="{Binding Nombre}" 
                                            FontSize="18" 
                                            FontAttributes="Bold" 
@@ -86,8 +91,6 @@
                                            Grid.Row="2" 
                                            Grid.Column="1" 
                                            Margin="10,5,0,0" />
-
-                                    <!-- Botón Agregar al Carrito -->
                                     <Button Text="Agregar al Carrito" 
                                             FontSize="14" 
                                             BackgroundColor="#4DD0E1" 
@@ -103,10 +106,31 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
+
+                <StackLayout Orientation="Horizontal" Padding="10,0">
+                    <Entry x:Name="CodigoDescuentoEntry" 
+                           Placeholder="Ingresa código de descuento" 
+                           FontSize="16" 
+                           HorizontalOptions="FillAndExpand" />
+                    <Button Text="Aplicar Descuento" 
+                            BackgroundColor="#4DD0E1" 
+                            TextColor="White" 
+                            Command="{Binding AplicarDescuentoCommand}" 
+                            Padding="10" />
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Padding="10,0">
+                    <Label Text="Total: " FontSize="18" FontAttributes="Bold" VerticalOptions="Center" TextColor="#34495E"/>
+                    <Label Text="{Binding TotalConDescuento, StringFormat='{0:C}'}" 
+                           FontSize="20" FontAttributes="Bold" 
+                           HorizontalOptions="EndAndExpand" 
+                           VerticalOptions="Center" 
+                           TextColor="#27AE60"/>
+                </StackLayout>
+
             </VerticalStackLayout>
         </ScrollView>
 
-        <!-- Barra de Navegación -->
         <Border StrokeShape="RoundRectangle 48"
                 StrokeThickness="0"
                 HeightRequest="60"
@@ -114,9 +138,7 @@
                 BackgroundColor="#0288D1"
                 Margin="12,24"
                 Grid.Row="2">
-
             <Grid ColumnDefinitions="*,*,*">
-
                 <Button ImageSource="home.png" 
                         BackgroundColor="Transparent" 
                         CornerRadius="30"
@@ -124,7 +146,6 @@
                         WidthRequest="50" 
                         Grid.Column="0"
                         Clicked="OnCartButtonClicked" />
-
                 <Button ImageSource="carrito.png" 
                         BackgroundColor="Transparent" 
                         CornerRadius="30"
@@ -132,7 +153,6 @@
                         WidthRequest="50" 
                         Grid.Column="1"
                         Clicked="OnCartButtonClicked" />
-
                 <Button ImageSource="login.png" 
                         BackgroundColor="Transparent" 
                         CornerRadius="30"
