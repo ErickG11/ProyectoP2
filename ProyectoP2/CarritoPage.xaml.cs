@@ -1,6 +1,7 @@
 using ProyectoP2.Data;
 using ProyectoP2.Models;
 using System;
+using System.Linq;
 
 namespace ProyectoP2.Paginas
 {
@@ -19,15 +20,13 @@ namespace ProyectoP2.Paginas
         {
             base.OnAppearing();
 
-            
-            TotalConDescuento = 0;
-
-            // Actualizamos el total sin descuento al cargar la página
+           
             var totalSinDescuento = ((CarritoPageViewModel)BindingContext).Total;
-            TotalSinDescuentoLabel.Text = $"{totalSinDescuento:C}";
 
-            // Actualizamos el total con descuento a cero al cargar la página
-            TotalLabel.Text = $"Total con descuento: {TotalConDescuento:C}";
+            
+            TotalSinDescuentoLabel.Text = $"{totalSinDescuento:C}";
+            TotalConDescuento = totalSinDescuento;
+            TotalLabel.Text = $"{TotalConDescuento:C}";
         }
 
         private void OnAplicarDescuentoClicked(object sender, EventArgs e)
@@ -40,19 +39,18 @@ namespace ProyectoP2.Paginas
                 return;
             }
 
-            
             var descuento = App.Datos.DescuentoDataTable.ObtenerDescuentoPorCodigo(codigo);
 
             if (descuento != null)
             {
-                
+                // Obtener el total sin descuento
                 double totalSinDescuento = ((CarritoPageViewModel)BindingContext).Total;
 
-                
+                // Calcular el descuento y el total con descuento
                 double descuentoAplicado = totalSinDescuento * (descuento.Porcentaje / 100);
                 TotalConDescuento = totalSinDescuento - descuentoAplicado;
 
-              
+                // Actualizar el total con descuento en la interfaz
                 TotalLabel.Text = $"Total con descuento: {TotalConDescuento:C}";
 
                 DisplayAlert("Descuento Aplicado", $"¡Se ha aplicado un descuento del {descuento.Porcentaje}%.", "OK");
@@ -62,11 +60,28 @@ namespace ProyectoP2.Paginas
                 DisplayAlert("Error", "El código de descuento ingresado no es válido.", "OK");
             }
         }
-    
-    private async void OnHomeButtonClicked(object sender, EventArgs e)
+
+        private void OnEliminarProductoClicked(object sender, EventArgs e)
+        {
+            // Obtener el botón que fue presionado
+            Button boton = (Button)sender;
+            var producto = (Producto)boton.BindingContext;
+
+            // Eliminar el producto de la lista de carrito en el ViewModel
+            var viewModel = (CarritoPageViewModel)BindingContext;
+            viewModel.ProductosEnCarrito.Remove(producto);
+
+            // Actualizar el total
+            TotalSinDescuentoLabel.Text = $"{viewModel.Total:C}";
+            TotalConDescuento = viewModel.Total; // Si no hay descuento, mostrar el total sin descuento
+            TotalLabel.Text = $"{TotalConDescuento:C}";
+        }
+
+        private async void OnHomeButtonClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new HomePage());
         }
+
         private async void OnLoginButtonClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new LoginPage());
@@ -78,3 +93,4 @@ namespace ProyectoP2.Paginas
         }
     }
 }
+

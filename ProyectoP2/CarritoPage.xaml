@@ -1,55 +1,53 @@
-<?xml version="1.0" encoding="utf-8" ?>
-    <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProyectoP2.Paginas.CarritoPage"
              Title="Carrito de Compras"
              BackgroundColor="#f1f1f1">
 
-        <ScrollView Padding="20">
-            <StackLayout Spacing="20">
-                <Label Text="Carrito de Compras"
+    <ScrollView Padding="20">
+        <StackLayout Spacing="20">
+            <Label Text="Carrito de Compras"
                    FontSize="24" 
                    FontAttributes="Bold" 
                    HorizontalOptions="Center" 
                    TextColor="#34495E"/>
 
-                <!-- Lista de productos -->
-                <CollectionView ItemsSource="{Binding ProductosEnCarrito}">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <Frame Padding="10" BackgroundColor="White" CornerRadius="10" Margin="0,5" HasShadow="True">
-                                <StackLayout Orientation="Horizontal" Spacing="15">
-                                    <Image Source="{Binding ImagenUrl}" WidthRequest="60" HeightRequest="60" Aspect="AspectFill" />
-                                    <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
-                                        <Label Text="{Binding Nombre}" FontSize="16" FontAttributes="Bold" TextColor="#2C3E50"/>
-                                        <Label Text="{Binding Precio, StringFormat='{0:C}'}" FontSize="14" TextColor="#27AE60"/>
-                                    </StackLayout>
+            <CollectionView ItemsSource="{Binding ProductosEnCarrito}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="10" BackgroundColor="White" CornerRadius="10" Margin="0,5" HasShadow="True">
+                            <StackLayout Orientation="Horizontal" Spacing="15">
+                                <Image Source="{Binding ImagenUrl}" WidthRequest="60" HeightRequest="60" Aspect="AspectFill" />
+                                <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
+                                    <Label Text="{Binding Nombre}" FontSize="16" FontAttributes="Bold" TextColor="#2C3E50"/>
+                                    <Label Text="{Binding Precio, StringFormat='{0:C}'}" FontSize="14" TextColor="#27AE60"/>
                                 </StackLayout>
-                            </Frame>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
+                                <!-- Botón para eliminar producto -->
+                                <Button Text="Eliminar" BackgroundColor="#E74C3C" TextColor="White" Clicked="OnEliminarProductoClicked"/>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
-                <!-- Total sin descuento -->
-                <StackLayout Orientation="Horizontal" Padding="10" Spacing="10">
-                    <Label Text="Total sin descuento: " FontSize="18" FontAttributes="Bold" VerticalOptions="Center" TextColor="#34495E"/>
-                    <Label x:Name="TotalSinDescuentoLabel" Text="{Binding Total, StringFormat='{0:C}'}" FontSize="20" FontAttributes="Bold" HorizontalOptions="EndAndExpand" VerticalOptions="Center" TextColor="#27AE60"/>
-                </StackLayout>
+            <!-- Total sin descuento -->
+            <StackLayout Orientation="Horizontal" Padding="10" Spacing="10">
+                <Label Text="Total sin descuento: " FontSize="18" FontAttributes="Bold" VerticalOptions="Center" TextColor="#34495E"/>
+                <Label x:Name="TotalSinDescuentoLabel" Text="Total sin descuento: $0" FontSize="20" FontAttributes="Bold" HorizontalOptions="EndAndExpand" VerticalOptions="Center" TextColor="#27AE60"/>
+            </StackLayout>
 
-                <!-- Total con descuento -->
-                <StackLayout Orientation="Horizontal" Padding="10" Spacing="10">
-                    <Label Text="Total con descuento: " FontSize="18" FontAttributes="Bold" VerticalOptions="Center" TextColor="#34495E"/>
-                    <Label x:Name="TotalLabel" Text="Total con descuento: $0" FontSize="20" FontAttributes="Bold" HorizontalOptions="EndAndExpand" VerticalOptions="Center" TextColor="#27AE60"/>
-                </StackLayout>
+            <!-- Total con descuento -->
+            <StackLayout Orientation="Horizontal" Padding="10" Spacing="10">
+                <Label Text="Total con descuento: " FontSize="18" FontAttributes="Bold" VerticalOptions="Center" TextColor="#34495E"/>
+                <Label x:Name="TotalLabel" Text="Total con descuento: $0" FontSize="20" FontAttributes="Bold" HorizontalOptions="EndAndExpand" VerticalOptions="Center" TextColor="#27AE60"/>
+            </StackLayout>
 
-                <!-- Entrada de código de descuento -->
-                <StackLayout Orientation="Horizontal" Padding="10" Spacing="10">
-                    <Entry x:Name="CodigoDescuentoEntry" Placeholder="Ingresa código de descuento" FontSize="16" />
-                    <Button Text="Aplicar descuento" BackgroundColor="#3498DB" TextColor="White" Clicked="OnAplicarDescuentoClicked"/>
-                </StackLayout>
+            <StackLayout Orientation="Horizontal" Padding="10" Spacing="10">
+                <Entry x:Name="CodigoDescuentoEntry" Placeholder="Ingresa código de descuento" FontSize="16" />
+                <Button Text="Aplicar descuento" BackgroundColor="#3498DB" TextColor="White" Clicked="OnAplicarDescuentoClicked"/>
+            </StackLayout>
 
-                <!-- Finalizar compra -->
-                <Button Text="Finalizar Compra" 
+            <Button Text="Finalizar Compra" 
                     BackgroundColor="#27AE60" 
                     TextColor="White" 
                     FontSize="18" 
@@ -58,40 +56,39 @@
                     VerticalOptions="Center" 
                     Command="{Binding OnFinalizarCompraClicked}" />
 
-                <!-- Barra de navegación -->
-                <Border StrokeShape="RoundRectangle 48"
+            <!-- Otros botones de navegación -->
+            <Border StrokeShape="RoundRectangle 48"
                     StrokeThickness="0"
                     HeightRequest="60"
                     VerticalOptions="End"
                     BackgroundColor="#0288D1"
                     Margin="12,24"
                     Grid.Row="2">
-                    <Grid ColumnDefinitions="*,*,*">
-                        <Button ImageSource="home.png" 
+                <Grid ColumnDefinitions="*,*,*">
+                    <Button ImageSource="home.png" 
                             BackgroundColor="Transparent" 
                             CornerRadius="30"
                             HeightRequest="50" 
                             WidthRequest="50" 
                             Grid.Column="0"
                             Clicked="OnHomeButtonClicked" />
-                        <Button ImageSource="carrito.png" 
+                    <Button ImageSource="carrito.png" 
                             BackgroundColor="Transparent" 
                             CornerRadius="30"
                             HeightRequest="50" 
                             WidthRequest="50" 
                             Grid.Column="1"
                             Clicked="OnCartButtonClicked" />
-                        <Button ImageSource="login.png" 
+                    <Button ImageSource="login.png" 
                             BackgroundColor="Transparent" 
                             CornerRadius="30"
                             HeightRequest="50" 
                             WidthRequest="50" 
                             Grid.Column="2"
                             Clicked="OnLoginButtonClicked" />
-                    </Grid>
-                </Border>
+                </Grid>
+            </Border>
 
-            </StackLayout>
-
-        </ScrollView>
-    </ContentPage>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

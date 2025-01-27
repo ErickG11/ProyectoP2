@@ -106,6 +106,14 @@ namespace ProyectoP2.Paginas
                 Descuento = Preferences.Get("Descuento", 0.0);
             }
         }
+
+        public void EliminarProducto(Producto producto)
+        {
+            ProductosEnCarrito.Remove(producto);
+            OnPropertyChanged(nameof(Total));  // Esto actualiza el total después de la eliminación
+            OnPropertyChanged(nameof(TotalConDescuento)); // También actualiza el total con descuento
+        }
+
     }
 
 }
