@@ -1,38 +1,39 @@
 ﻿using ProyectoP2.Models;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace ProyectoP2.Services
 {
     public static class CarritoService
     {
-        private static List<Producto> carrito = new List<Producto>();
+        private static ObservableCollection<Producto> _productosEnCarrito = new ObservableCollection<Producto>();
 
-        // Método para agregar un producto al carrito
+        // Agregar un producto al carrito
         public static void AgregarAlCarrito(Producto producto)
         {
-            carrito.Add(producto);
+            _productosEnCarrito.Add(producto);
         }
 
-        // Método para obtener todos los productos en el carrito
-        public static List<Producto> ObtenerCarrito()
+        // Obtener los productos en el carrito
+        public static ObservableCollection<Producto> GetProductosEnCarrito()
         {
-            return carrito;
+            return _productosEnCarrito;
         }
 
-        // Método para aplicar un descuento a todos los productos en el carrito
-        public static void AplicarDescuento(decimal porcentaje)
+        // Limpiar el carrito después de la compra
+        public static void LimpiarCarrito()
         {
-            foreach (var producto in carrito)
+            _productosEnCarrito.Clear();
+        }
+
+        // Calcular el total del carrito
+        public static decimal CalcularTotal()
+        {
+            decimal total = 0;
+            foreach (var producto in _productosEnCarrito)
             {
-                producto.Precio -= producto.Precio * (porcentaje / 100);
+                total += producto.Precio;
             }
-        }
-
-        // Método para vaciar el carrito
-        public static void VaciarCarrito()
-        {
-            carrito.Clear();
+            return total;
         }
     }
 }
-
