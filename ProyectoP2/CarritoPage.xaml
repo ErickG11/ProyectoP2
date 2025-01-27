@@ -11,8 +11,11 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout Orientation="Horizontal" Padding="5">
-                        <Label Text="{Binding Nombre}" HorizontalOptions="StartAndExpand"/>
-                        <Label Text="{Binding Precio, StringFormat='{0:C}'}" HorizontalOptions="End"/>
+                        <Image Source="{Binding ImagenUrl}" WidthRequest="50" HeightRequest="50" Aspect="AspectFill" />
+                        <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand">
+                            <Label Text="{Binding Nombre}" HorizontalOptions="StartAndExpand"/>
+                            <Label Text="{Binding Precio, StringFormat='{0:C}'}" HorizontalOptions="StartAndExpand"/>
+                        </StackLayout>
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

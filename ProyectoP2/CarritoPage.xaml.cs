@@ -19,16 +19,16 @@ namespace ProyectoP2.Paginas
             BindingContext = this;
         }
 
-        private void OnFinalizarCompraClicked(object sender, EventArgs e)
+        private async void OnFinalizarCompraClicked(object sender, EventArgs e)
         {
             // Limpiar el carrito
             CarritoService.LimpiarCarrito();
 
             // Mostrar alerta de éxito
-            DisplayAlert("Compra Realizada", "Su compra ha sido realizada exitosamente.", "OK");
+            await DisplayAlert("Compra Realizada", "Su compra ha sido realizada con éxito.", "OK");
 
             // Regresar a la página principal o de inicio
-            Navigation.PopToRootAsync();
+            await Navigation.PopToRootAsync();
         }
     }
 }
