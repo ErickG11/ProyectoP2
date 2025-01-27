@@ -6,22 +6,24 @@ namespace ProyectoP2.Data
 {
     public class SQLiteDatacs
     {
-        //manejar la conexión a la base de datos
+        // Manejar la conexión a la base de datos
         readonly SQLiteAsyncConnection _connectionBD;
 
         public UsuarioData UsuarioDataTable { get; set; }
+        public DescuentoAPI DescuentoDataTable { get; set; }
 
+        // Constructor
         public SQLiteDatacs(string path)
         {
             _connectionBD = new SQLiteAsyncConnection(path);
 
-            // asegura que la tabla de usuarios exista al iniciar la conexión
+            // Asegura que las tablas existan
             _connectionBD.CreateTableAsync<Usuario>().Wait();
+            _connectionBD.CreateTableAsync<Descuento>().Wait();
 
-            // inicializa la propiedad UsuarioDataTable con la conexión
             UsuarioDataTable = new UsuarioData(_connectionBD);
+            DescuentoDataTable = new DescuentoAPI();
         }
     }
 }
-
 

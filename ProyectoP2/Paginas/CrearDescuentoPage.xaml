@@ -3,19 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProyectoP2.Paginas.CrearDescuentoPage"
              Title="Crear Descuento"
-             NavigationPage.HasNavigationBar="False">
+             BackgroundColor="#f1f1f1">
 
     <StackLayout Padding="20" Spacing="15">
         <Label Text="Código de Descuento" FontSize="16" />
-        <Entry x:Name="CodigoDescuentoEntry" Placeholder="Ingrese un código de descuento" />
+        <Entry x:Name="CodigoEntry" Placeholder="Ingrese el código de descuento" />
 
         <Label Text="Porcentaje de Descuento" FontSize="16" />
-        <Entry x:Name="DescuentoEntry" Keyboard="Numeric" Placeholder="Ingrese el porcentaje" />
+        <Entry x:Name="PorcentajeEntry" Placeholder="Ingrese el porcentaje" Keyboard="Numeric" />
 
         <Button Text="Crear Descuento" 
-                FontSize="16" 
                 BackgroundColor="Black" 
                 TextColor="White" 
+                FontSize="16" 
                 Clicked="OnCrearDescuentoClicked" />
     </StackLayout>
 

@@ -19,7 +19,7 @@ namespace ProyectoP2.Services
             return _productosEnCarrito;
         }
 
-        // Limpiar el carrito después de la compra
+        // limpiar el carrito después de la compra
         public static void LimpiarCarrito()
         {
             _productosEnCarrito.Clear();

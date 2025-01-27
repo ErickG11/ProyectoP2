@@ -107,6 +107,7 @@
                     </CollectionView.ItemTemplate>
                 </CollectionView>
 
+
             </VerticalStackLayout>
         </ScrollView>
 

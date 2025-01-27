@@ -39,4 +39,3 @@ namespace ProyectoP2.Data
         }
     }
 }
-

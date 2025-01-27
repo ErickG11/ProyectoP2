@@ -1,16 +1,40 @@
 ﻿using System.Collections.Generic;
+using System.IO;
+using System.Text.Json;
 
 namespace ProyectoP2.Services
 {
     public static class DescuentoService
     {
-        public static List<Descuento> Descuentos { get; set; } = new List<Descuento>();
+        private static readonly string FilePath = Path.Combine(FileSystem.AppDataDirectory, "descuentos.json");
 
-        // agregar un descuento
+
+        public static List<Descuento> Descuentos { get; private set; } = new List<Descuento>();
+
+        // Método para inicializar la lista cargando los descuentos guardados
+        public static void CargarDescuentos()
+        {
+            if (File.Exists(FilePath))
+            {
+                string json = File.ReadAllText(FilePath);
+                Descuentos = JsonSerializer.Deserialize<List<Descuento>>(json) ?? new List<Descuento>();
+            }
+        }
+
+
+        private static void GuardarDescuentos()
+        {
+            string json = JsonSerializer.Serialize(Descuentos);
+            File.WriteAllText(FilePath, json);
+        }
+
+
         public static void AgregarDescuento(string codigo, double porcentaje)
         {
             Descuentos.Add(new Descuento { Codigo = codigo, Porcentaje = porcentaje });
+            GuardarDescuentos(); // Guardar cambios en el archivo
         }
+
 
         public static double ObtenerDescuento(string codigo)
         {
@@ -18,6 +42,7 @@ namespace ProyectoP2.Services
             return descuento != null ? descuento.Porcentaje : 0;
         }
     }
+
 
     public class Descuento
     {

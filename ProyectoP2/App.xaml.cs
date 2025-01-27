@@ -1,12 +1,14 @@
 ﻿using ProyectoP2.Data;
 using ProyectoP2.Models;
 using ProyectoP2.Paginas;
+using System.IO;
 
 namespace ProyectoP2
 {
     public partial class App : Application
     {
         static SQLiteDatacs _datos;
+        static DescuentoAPI _descuentoAPI;
 
         public static SQLiteDatacs Datos
         {
@@ -20,9 +22,20 @@ namespace ProyectoP2
             }
         }
 
+        public static DescuentoAPI DescuentoDB
+        {
+            get
+            {
+                if (_descuentoAPI == null)
+                {
+                    _descuentoAPI = new DescuentoAPI();
+                }
+                return _descuentoAPI;
+            }
+        }
+
         public static Usuario Usuario { get; set; }
 
-        // Calcula dinámicamente si el usuario es administrador
         public static bool EsAdministrador { get; set; }
 
         public App()
@@ -33,4 +46,3 @@ namespace ProyectoP2
         }
     }
 }
-

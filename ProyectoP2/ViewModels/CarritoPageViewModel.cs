@@ -4,6 +4,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 using Microsoft.Maui.Controls;
+using Microsoft.Maui.Storage;
+using ProyectoP2.Data; // Asegúrate de importar esto para acceder a la base de datos
 
 namespace ProyectoP2.Paginas
 {
@@ -30,16 +32,6 @@ namespace ProyectoP2.Paginas
             }
         }
 
-        // aplica el descuento al total
-        public double TotalConDescuento
-        {
-            get
-            {
-               
-                return Total - (Total * (Descuento / 100));
-            }
-        }
-
         private double _descuento;
         public double Descuento
         {
@@ -48,7 +40,15 @@ namespace ProyectoP2.Paginas
             {
                 _descuento = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(TotalConDescuento)); 
+                OnPropertyChanged(nameof(TotalConDescuento)); // Actualizar TotalConDescuento
+            }
+        }
+
+        public double TotalConDescuento
+        {
+            get
+            {
+                return Total - (Total * (Descuento / 100));
             }
         }
 
@@ -57,6 +57,8 @@ namespace ProyectoP2.Paginas
 
         public CarritoPageViewModel()
         {
+            CargarDescuentoGuardado(); // Cargar descuento guardado al iniciar
+
             OnFinalizarCompraClicked = new Command(FinalizarCompra);
             AplicarDescuentoCommand = new Command(AplicarDescuento);
         }
@@ -67,21 +69,22 @@ namespace ProyectoP2.Paginas
             Application.Current.MainPage.DisplayAlert("Compra Realizada", "Su compra se ha realizado con éxito", "OK");
         }
 
-        // Método para aplicar descuento
         private void AplicarDescuento()
         {
             if (!string.IsNullOrEmpty(CodigoDescuento))
             {
-                
-                double descuentoAplicado = DescuentoService.ObtenerDescuento(CodigoDescuento);
+                // Obtener descuento de la base de datos
+                var descuentoAplicado = App.Datos.DescuentoDataTable.ObtenerDescuentoPorCodigo(CodigoDescuento);
 
-                if (descuentoAplicado > 0)
+                if (descuentoAplicado != null)
                 {
-                    // Aplicamos el descuento
-                    Descuento = descuentoAplicado;
+                    // Aplicar descuento y guardar preferencias
+                    Descuento = descuentoAplicado.Porcentaje;
 
-                    // Mostramos una alerta confirmando que se ha aplicado el descuento
-                    Application.Current.MainPage.DisplayAlert("Descuento Aplicado", $"Se ha aplicado un descuento del {descuentoAplicado}%", "OK");
+                    Preferences.Set("CodigoDescuento", CodigoDescuento);
+                    Preferences.Set("Descuento", descuentoAplicado.Porcentaje);
+
+                    Application.Current.MainPage.DisplayAlert("Descuento Aplicado", $"Se ha aplicado un descuento del {descuentoAplicado.Porcentaje}%", "OK");
                 }
                 else
                 {
@@ -93,5 +96,16 @@ namespace ProyectoP2.Paginas
                 Application.Current.MainPage.DisplayAlert("Error", "Por favor ingrese un código de descuento", "OK");
             }
         }
+
+        private void CargarDescuentoGuardado()
+        {
+            // Cargar preferencias guardadas, si existen
+            if (Preferences.ContainsKey("CodigoDescuento"))
+            {
+                CodigoDescuento = Preferences.Get("CodigoDescuento", string.Empty);
+                Descuento = Preferences.Get("Descuento", 0.0);
+            }
+        }
     }
+
 }
